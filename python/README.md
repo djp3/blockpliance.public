@@ -8,7 +8,7 @@
   * ```pip install -r requirements.txt```
 * Review the code in ```call_api.py```
 * Execute the code with environment variables holding the credentials
-  * AWS_REGION='<region>' AWS_USERNAME='<username>' AWS_PASSWORD='<password>' AWS_APP_CLIENT_ID='<client_id>' python ./call_api.py
+  * ```AWS_REGION='<region>' AWS_USERNAME='<username>' AWS_PASSWORD='<password>' AWS_APP_CLIENT_ID='<client_id>' python ./call_api.py```
 * Deactivate the environment
   * ```deactivate```
 
