@@ -1,1 +1,2 @@
-*API Examples for interacting with Blockpliance *
+# Blockpliance
+## API Examples for interacting with Blockpliance *

@@ -1,0 +1,8 @@
+{
+	"ClientId": "<put client id here>",
+	"AuthFlow": "REFRESH_TOKEN_AUTH",
+	"AuthParameters": {
+		"REFRESH_TOKEN": "foo"
+	}
+}
+
