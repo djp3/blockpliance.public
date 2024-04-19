@@ -1,3 +1,6 @@
 # Blockpliance
 ## API Examples for interacting with Blockpliance
-### [bash example](./bash)
+### First, obtain credentials from Blockpliance (sales@blockpliance.com)
+#### [bash example](./bash)
+#### [python example](./python)
+
