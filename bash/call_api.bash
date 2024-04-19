@@ -1,5 +1,5 @@
 #!/bin/bash
-#Original author: Don Patterson, CTO Blockpliance
+# Original author: Don Patterson, CTO Blockpliance
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
