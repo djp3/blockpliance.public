@@ -3,7 +3,7 @@
 * Create a python environment
   * ```python -v venv api_env```
 * Activate the environment
-  * source api_env/bin/activate
+  * ```source api_env/bin/activate```
 * Install dependencies
   * ```pip install -r requirements.txt```
 * Review the code in ```call_api.py```
