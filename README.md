@@ -1,22 +1,24 @@
-# Blockpliance API reference code
+![Blockpliance Sticker Logo](https://assets-global.website-files.com/64fc9d87825785416c12539b/64fcb20e15ed201d5bac2906_blockpliance_stickers-2%225-p-500.png)
 # Blockpliance API and Developer Documentation
 
-Welcome to the Blockpliance API documentation. This guide will help you understand how to integrate and utilize our API to leverage Blockpliance's powerful features in your applications.
+Welcome to the Blockpliance API documentation. This guide will help you understand how to integrate and utilize our API to leverage Blockpliance's Artificial Intelligence and Machine Learning driven compliance features in your applications.
 
 ## Table of Contents
 
+<div style="float: right; margin-left: 20px;">
+  <img src="https://assets-global.website-files.com/64fc9d87825785416c12539b/65b97d05b11bebdb3cf6c7c5_Screenshot%202024-01-30%20at%2014.45.22-p-500.png" alt="Blockpliance Risk Cards A through F" width="200">
+</div>
 1. [Introduction](#introduction)
 2. [Getting Started](#getting-started)
 3. [Authentication](#authentication)
 4. [API Endpoints](#api-endpoints)
-   - [Endpoint 1](#endpoint-1)
-   - [Endpoint 2](#endpoint-2)
-   - [Endpoint 3](#endpoint-3)
+   - [Bitcoin Risk Assessment](#bitcoin-risk-assessment)
+   - [Multi-currency Risk Assessment (Beta)](#multi-currency-risk-assessment)
 5. [Request and Response Formats](#request-and-response-formats)
 6. [Error Handling](#error-handling)
 7. [Code Examples](#code-examples)
-   - [Example 1](#example-1)
-   - [Example 2](#example-2)
+   - [Bash](#bash)
+   - [Python](#python)
 8. [Best Practices](#best-practices)
 9. [FAQ](#faq)
 10. [Support and Feedback](#support-and-feedback)
@@ -55,7 +57,7 @@ REFRESH_TOKEN=$(echo "$AUTH_RESULT" | jq -r .AuthenticationResult.RefreshToken)
 
 ## API Endpoints
 
-### Endpoint 1 : bitcoin risk assessment
+### Bitcoin Risk Assessment
 
 Request a risk assessment for a bitcoin address
 
@@ -123,7 +125,7 @@ currencies:
 |     USD Coin | USDC |
 |     Tether | USDT |
 |     USDT on Ethereum | USDT_ON_ETH | 
-| USDT on Tron     USDT_ON_TRON |
+| USDT on Tron | USDT_ON_TRON |
 |     Monero | XMR |
 |     Ripple | XRP |
 |     Verge | XVG |

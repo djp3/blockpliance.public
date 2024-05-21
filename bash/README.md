@@ -1,5 +1,5 @@
 # bash
-* Obtain credentials from Blockpliance (sales@blockpliance.com)
+* Obtain credentials from our friendly team [https://calendly.com/blockpliance/personalized-intro] (https://calendly.com/blockpliance/personalized-intro]).
 * Put credentials in ```user-data.json```
 * Review the code in ```call_api.bash```
   * Optionally change the addresses to query
