@@ -38,8 +38,8 @@ This guide will help you understand how to integrate and utilize our API to leve
 To get started with the Blockpliance API, follow these steps:
 
 1. Sign up for a Blockpliance account with our friendly team [https://calendly.com/blockpliance/personalized-intro](https://calendly.com/blockpliance/personalized-intro]).
-2. Basic Flow
-3. 1. Initialize by requesting a token from AWS Cognito using username and password.
+2. Program Flow
+   1. Initialize by requesting a token from AWS Cognito using username and password.
    2. Query for info on a crypto address with an http REST call
    3. Process the JSON response for the information you need
    4. Repeat 2 and 3 as necessary
