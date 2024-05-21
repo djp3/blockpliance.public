@@ -69,7 +69,8 @@ https://api.blockpliance.com/v1/grade/<address hash>/BTC
 ```
 
 JSON Response:
-```{
+```
+{
 	"version": "1.1",
 	"errors": [<array of strings, empty if no errors>],
 	"warnings": [<array of warnings, empty if no warnings>],
@@ -140,7 +141,8 @@ https://api.blockpliance.com/v1/beta/<address hash>/<API Abbreviation>
 ```
 
 JSON Response:
-```{
+```
+{
 	"version": "1.1",
 	"errors": [<array of strings, empty if no errors>],
 	"warnings": [<array of warnings, empty if no warnings>],
