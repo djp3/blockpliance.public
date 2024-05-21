@@ -15,7 +15,7 @@
 # along with this program. If not, see <https://www.gnu.org/licenses/>.
 #
 
-#Check for commands
+#Check for command-line commands
 for cmd in curl jq; do
     command -v $cmd >/dev/null 2>&1 || { echo >&2 "I require $cmd but it's not installed. Aborting."; exit 1; }
 done
@@ -43,13 +43,18 @@ echo "$AUTH_RESULT" | jq -r > result.json
 ACCESS_TOKEN=$(echo "$AUTH_RESULT" | jq -r .AuthenticationResult.AccessToken)
 REFRESH_TOKEN=$(echo "$AUTH_RESULT" | jq -r .AuthenticationResult.RefreshToken)
 
-#identify btc addresses you are interested in querying
-declare -a hashs=(1FfmbHfnpaZjKFvyi1okTjJJusN455paPH 12cbQLTFMXRnSzktFkuoG3eHoMeFtpTu3S)
+#identify btc addresses you are interested in querying for the grade endpoint
+declare -a hashs=( 1FfmbHfnpaZjKFvyi1okTjJJusN455paPH/BTC 12cbQLTFMXRnSzktFkuoG3eHoMeFtpTu3S/BTC )
+
+#identify any crypto addresses you are interested in querying for the beta endpoint
+#declare -a hashs=( 12cbQLTFMXRnSzktFkuoG3eHoMeFtpTu3S/BTC 0x001cf27131e91371038e808e00f951197356c663/ETH 0x002026372b31817899d414a0f226b8b500136f5f/ETH 0x00271ba71c16cb0fdf532570091341665d147350/ETH )
 
 #query each in turn and store in output file for inspection
 for i in "${hashs[@]}"; do
+    filename=$(echo "$i" | tr '/' '_')
 	echo -n "$i,";
-    curl -s -X GET -H "Authorization: Bearer $ACCESS_TOKEN" "https://api.blockpliance.com/v1/grade/$i/BTC" | tee "$i.output" | jq .;
+    curl -s -X GET -H "Authorization: Bearer $ACCESS_TOKEN" "https://api.blockpliance.com/v1/grade/$i" | tee "${filename}.output" | jq .;
+    #curl -s -X GET -H "Authorization: Bearer $ACCESS_TOKEN" "https://api.blockpliance.com/v1/beta/$i" | tee "${filename}.output" | jq .;
 done
 
 # Prepare the refresh token payload by replacing the placeholder in the template
