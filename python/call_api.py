@@ -17,6 +17,7 @@ import requests
 import json
 import logging
 from os import environ
+from typing import Dict
 
 # Contains secrets brought in from environment variables
 class Settings:
@@ -25,6 +26,13 @@ class Settings:
     AWS_USERNAME = None
     AWS_PASSWORD = None
     AWS_TOKENS = {}
+ 
+    BASE_URL = "https://api.blockpliance.com/v1/"
+    ENDPOINT_MAPPING = {
+        "grade": "grade",
+        "beta": "beta"
+    }
+
 
     def __str__(self):
         return (f"Settings(\n\tAWS_REGION={self.AWS_REGION}, "
@@ -130,29 +138,43 @@ def refresh_cognito_tokens(aws_region, client_id, refresh_token):
         return {'error': response.text, 'StatusCode': response.status_code}
 
 
- 
-    
+# Standard call to the bitcoin risk assessment endpoint: 
+#        json_response = query_risk_assessment_api(1FfmbHfnpaZjKFvyi1okTjJJusN455paPH)
+#           or
+#        json_response = query_risk_assessment_api(1FfmbHfnpaZjKFvyi1okTjJJusN455paPH,"BTC","grade)
+#
+# Beta call to the multi-currency risk assessment endpoint: 
+#        json_response = query_risk_assessment_api(1FfmbHfnpaZjKFvyi1okTjJJusN455paPH,"BTC","beta")
 
-def query_aws(crypto_address):
+def query_risk_assessment_api(crypto_address: str, currency_type: str = "BTC", end_point: str = "grade") -> Dict:
+    # Check if the access token exists
+    access_token = settings.AWS_TOKENS.get("access_token")
+    if not access_token:
+        return {"error": "Access token is missing"}
+
+    # Get the endpoint path from the mapping
+    endpoint_path = settings.ENDPOINT_MAPPING.get(end_point)
+    if not endpoint_path:
+        return {"error": "Invalid endpoint"}
+
     # Construct the URL
-    url = f"https://api.blockpliance.com/v1/grade/{crypto_address}/BTC"
-
-    # Get the access token from your token storage
-    access_token = settings.AWS_TOKENS["access_token"]
+    url = f"{settings.BASE_URL}{endpoint_path}/{crypto_address}{currency_type}"
 
     # Set up the headers
     headers = {"Authorization": f"Bearer {access_token}"}
 
-    # Make the GET request
-    response = requests.get(url, headers=headers, timeout=60)
+    try:
+        # Make the GET request
+        response = requests.get(url, headers=headers, timeout=60)
 
-    # Check if the request was successful
-    if response.status_code == 200:
-        # Process the response if needed
-        return response.json()  # Returns the JSON response from the API
-    else:
-        # Handle errors or unsuccessful requests
-        return {"error": "Failed to retrieve data", "status_code": response.status_code}
+        # Check if the request was successful
+        if response.status_code == 200:
+            return response.json()  # Returns the JSON response from the API
+        else:
+            return {"error": "Failed to retrieve data", "status_code": response.status_code}
+
+    except requests.RequestException as e:
+        return {"error": str(e)}
 
  
  
@@ -175,7 +197,7 @@ def main():
     # Example of querying AWS with two different crypto addresses
     crypto_addresses = ["1FfmbHfnpaZjKFvyi1okTjJJusN455paPH", "12cbQLTFMXRnSzktFkuoG3eHoMeFtpTu3S"]
     for address in crypto_addresses:
-        json_response = query_aws(address)
+        json_response = query_risk_assessment_api(address)
         if 'error' in json_response:
             logging.error("Failed to retrieve data for %s:\n%s", address, json.dumps(json_response['error']))
         else:
@@ -204,7 +226,3 @@ if __name__ == "__main__":
 
     # Launch
     main()
-
-
-
-
