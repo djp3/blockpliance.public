@@ -1,5 +1,5 @@
 # python
-* Obtain credentials from our friendly team [https://calendly.com/blockpliance/personalized-intro] (https://calendly.com/blockpliance/personalized-intro]).
+* Obtain credentials from our friendly team [https://calendly.com/blockpliance/personalized-intro](https://calendly.com/blockpliance/personalized-intro]).
 * Create a python environment
   * ```python -v venv api_env```
 * Activate the environment
