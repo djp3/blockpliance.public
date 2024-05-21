@@ -4,12 +4,9 @@
 
 ![Blockpliance Sticker Logo](https://assets-global.website-files.com/64fc9d87825785416c12539b/64fcb20e15ed201d5bac2906_blockpliance_stickers-2%225-p-500.png)
 # API and Developer Documentation
-
-Welcome to the Blockpliance API documentation. This guide will help you understand how to integrate and utilize our API to leverage Blockpliance's Artificial Intelligence and Machine Learning driven compliance features in your applications. ([Just show me the code](#code-examples))
+([Just show me the code](#code-examples))
 
 ## Table of Contents
-
-
 
 1. [Introduction](#introduction)
 2. [Getting Started](#getting-started)
@@ -32,6 +29,9 @@ Blockpliance is a leading blockchain compliance platform that offers a comprehen
 
 We are a fast moving start-up company, so if you don't see what you like, reach
 out to [us](mailto:djp3@blockpliance.com) to see if we can change our endpoint for your needs.
+
+This guide will help you understand how to integrate and utilize our API to leverage Blockpliance's Artificial Intelligence and Machine Learning driven compliance features in your applications.
+
 
 ## Getting Started
 
@@ -58,7 +58,7 @@ ACCESS_TOKEN=$(echo "$AUTH_RESULT" | jq -r .AuthenticationResult.AccessToken)
 REFRESH_TOKEN=$(echo "$AUTH_RESULT" | jq -r .AuthenticationResult.RefreshToken)
 ```
 
-## API Endpoints
+## API Endpoints v1.1
 
 ### Bitcoin Risk Assessment
 
