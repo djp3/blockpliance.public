@@ -49,7 +49,7 @@ declare -a hashs=(1FfmbHfnpaZjKFvyi1okTjJJusN455paPH 12cbQLTFMXRnSzktFkuoG3eHoMe
 #query each in turn and store in output file for inspection
 for i in "${hashs[@]}"; do
 	echo -n "$i,";
-    curl -s -X GET -H "Authorization: Bearer $ACCESS_TOKEN" "https://api.blockpliance.com/v1/front-end/$i/BTC" | tee "$i.output" | jq .;
+    curl -s -X GET -H "Authorization: Bearer $ACCESS_TOKEN" "https://api.blockpliance.com/v1/grade/$i/BTC" | tee "$i.output" | jq .;
 done
 
 # Prepare the refresh token payload by replacing the placeholder in the template
