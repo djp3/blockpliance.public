@@ -6,7 +6,7 @@ Welcome to the Blockpliance API documentation. This guide will help you understa
 ## Table of Contents
 
 <div style="float: right; margin-left: 20px;">
-  <img src="https://assets-global.website-files.com/64fc9d87825785416c12539b/65b97d05b11bebdb3cf6c7c5_Screenshot%202024-01-30%20at%2014.45.22-p-500.png" alt="Blockpliance Risk Cards A through F" width="200"/>
+  <img src="https://assets-global.website-files.com/64fc9d87825785416c12539b/65b97d05b11bebdb3cf6c7c5_Screenshot%202024-01-30%20at%2014.45.22-p-500.png" alt="Blockpliance Risk Cards A through F" width="200" align="right"/>
 </div>
 
 1. [Introduction](#introduction)
