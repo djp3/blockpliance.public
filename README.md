@@ -1,13 +1,14 @@
 ![Blockpliance Sticker Logo](https://assets-global.website-files.com/64fc9d87825785416c12539b/64fcb20e15ed201d5bac2906_blockpliance_stickers-2%225-p-500.png)
-# Blockpliance API and Developer Documentation
+# API and Developer Documentation
 
 Welcome to the Blockpliance API documentation. This guide will help you understand how to integrate and utilize our API to leverage Blockpliance's Artificial Intelligence and Machine Learning driven compliance features in your applications.
 
 ## Table of Contents
 
 <div style="float: right; margin-left: 20px;">
-  <img src="https://assets-global.website-files.com/64fc9d87825785416c12539b/65b97d05b11bebdb3cf6c7c5_Screenshot%202024-01-30%20at%2014.45.22-p-500.png" alt="Blockpliance Risk Cards A through F" width="200">
+  <img src="https://assets-global.website-files.com/64fc9d87825785416c12539b/65b97d05b11bebdb3cf6c7c5_Screenshot%202024-01-30%20at%2014.45.22-p-500.png" alt="Blockpliance Risk Cards A through F" width="200"/>
 </div>
+
 1. [Introduction](#introduction)
 2. [Getting Started](#getting-started)
 3. [Authentication](#authentication)
