@@ -42,7 +42,7 @@ To get started with the Blockpliance API, follow these steps:
    1. Initialize by requesting a token from AWS Cognito using username and password.
    2. Query for info on a crypto address with an http REST call
    3. Process the JSON response for the information you need
-   4. Repeat 2 and 3 as necessary
+   4. Repeat previous two steps as necessary
    5. If it is a long running process refresh your AWS credentials
    
 
