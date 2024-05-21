@@ -107,9 +107,10 @@ For example:
 }
 ```
 
-### Endpoint 2 : multi-currency risk assessment (beta)
-
+### Multi-Currency Risk Assessment
+This endpoint is in beta.
 Request a risk assessment for a cryptocurrency address in one of the following
+
 currencies:
 | Common Name | API Abbreviation |
 | ----------- | ---------------- |
