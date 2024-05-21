@@ -5,7 +5,7 @@
 ![Blockpliance Sticker Logo](https://assets-global.website-files.com/64fc9d87825785416c12539b/64fcb20e15ed201d5bac2906_blockpliance_stickers-2%225-p-500.png)
 # API and Developer Documentation
 
-Welcome to the Blockpliance API documentation. This guide will help you understand how to integrate and utilize our API to leverage Blockpliance's Artificial Intelligence and Machine Learning driven compliance features in your applications.
+Welcome to the Blockpliance API documentation. This guide will help you understand how to integrate and utilize our API to leverage Blockpliance's Artificial Intelligence and Machine Learning driven compliance features in your applications. ([Just show me the code](#code-examples)
 
 ## Table of Contents
 
