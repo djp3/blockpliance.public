@@ -16,7 +16,7 @@ Welcome to the Blockpliance API documentation. This guide will help you understa
 3. [Authentication](#authentication)
 4. [API Endpoints](#api-endpoints)
    - [Bitcoin Risk Assessment ('grade')](#bitcoin-risk-assessment)
-   - [Multi-currency Risk Assessment ('beta')](#multi--currency-risk-assessment)
+   - [Multi-currency Risk Assessment ('beta')](#multi-currency-risk-assessment)
 5. [Request and Response Formats](#request-and-response-formats)
 6. [Error Handling](#error-handling)
 7. [Code Examples](#code-examples)
@@ -107,7 +107,7 @@ For example:
 }
 ```
 
-### Multi-Currency Risk Assessment
+### Multi Currency Risk Assessment
 This endpoint is in beta.
 Request a risk assessment for a cryptocurrency address in one of the following
 
