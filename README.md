@@ -37,7 +37,7 @@ This guide will help you understand how to integrate and utilize our API to leve
 
 To get started with the Blockpliance API, follow these steps:
 
-1. Sign up for a Blockpliance account with our friendly team [https://calendly.com/blockpliance/personalized-intro] (https://calendly.com/blockpliance/personalized-intro]).
+1. Sign up for a Blockpliance account with our friendly team [https://calendly.com/blockpliance/personalized-intro](https://calendly.com/blockpliance/personalized-intro]).
 2. Review the code in this repo to understand how to obtain credentials.
 3. Review the API documentation to understand the available endpoints and their usage.
 
