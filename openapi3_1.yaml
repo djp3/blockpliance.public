@@ -1,0 +1,71 @@
+
+"openapi": "3.1.0"
+"info":
+  "title": "Blockpliance Cryptocurrency Compliance API"
+  "version": "1.2"
+"servers":
+  -
+    "url": "https://api.blockpliance.com/v1"
+"security":
+  -
+    "bearerAuth": []
+"components":
+  "securitySchemes":
+    "bearerAuth":
+      "type": "http"
+      "scheme": "bearer"
+      "bearerFormat": "AWS Cognito"
+"paths":
+  "/ofac/{address}":
+    "get":
+      "summary": "Check OFAC"
+      "description": "Check OFAC sanction status for a cryptocurrency address"
+      "parameters":
+        -
+          "name": "address"
+          "in": "path"
+          "required": true
+          "description": "The cryptocurrency address to check"
+          "schema":
+            "type": "string"
+          "example": "bc1qfcl8a4ck7uu3phgg5fj6g9servp6f85j3frcd3"
+      "security":
+        -
+          "bearerAuth": []
+      "responses":
+        "200":
+          "description": "Successful response"
+          "content":
+            "application/json":
+              "schema":
+                "type": "object"
+                "properties":
+                  "version":
+                    "type": "string"
+                    "examples":
+                      - "1.2"
+                  "errors":
+                    "type": "array"
+                    "items":
+                      "type": "string"
+                    "examples":
+                      - "[]"
+                  "warnings":
+                    "type": "array"
+                    "items":
+                      "type": "string"
+                    "examples":
+                      - "[]"
+                  "result":
+                    "type": "object"
+                    "properties":
+                      "ofac_sanctioned":
+                        "type": "boolean"
+                        "examples":
+                          - true
+                          - false
+                "required":
+                  - "version"
+                  - "errors"
+                  - "warnings"
+                  - "result"
