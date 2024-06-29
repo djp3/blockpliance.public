@@ -1,5 +1,4 @@
-
-"openapi": "3.1.0"
+"openapi": "3.0.1"
 "info":
   "title": "Blockpliance Cryptocurrency Compliance API"
   "version": "1.2"
@@ -16,7 +15,7 @@
       "scheme": "bearer"
       "bearerFormat": "AWS Cognito"
 "paths":
-  "/ofac/{address}":
+  "/ofac_check/{address}":
     "get":
       "summary": "Check OFAC"
       "description": "Check OFAC sanction status for a cryptocurrency address"
@@ -40,22 +39,6 @@
               "schema":
                 "type": "object"
                 "properties":
-                  "version":
-                    "type": "string"
-                    "examples":
-                      - "1.2"
-                  "errors":
-                    "type": "array"
-                    "items":
-                      "type": "string"
-                    "examples":
-                      - "[]"
-                  "warnings":
-                    "type": "array"
-                    "items":
-                      "type": "string"
-                    "examples":
-                      - "[]"
                   "result":
                     "type": "object"
                     "properties":
@@ -64,8 +47,251 @@
                         "examples":
                           - true
                           - false
+                  "version":
+                    "type": "string"
+                    "example": "1.2"
+                  "warnings":
+                    "type": "array"
+                    "items":
+                      "type": "string"
+                    "example":
+                      - "Some warning"
+                      - "A second warning"
+                  "errors":
+                    "type": "array"
+                    "items":
+                      "type": "string"
+                    "example":
+                      - ""
                 "required":
-                  - "version"
-                  - "errors"
-                  - "warnings"
                   - "result"
+                  - "version"
+                  - "warnings"
+                  - "errors"
+  "/risk_profile/{address}":
+    "get":
+      "summary": "Risk Attribution"
+      "description": "Risk profiling for cryptocurrency addresses"
+      "parameters":
+        -
+          "name": "address"
+          "in": "path"
+          "required": true
+          "description": "The cryptocurrency address to profile"
+          "schema":
+            "type": "string"
+          "example": "bc1qfcl8a4ck7uu3phgg5fj6g9servp6f85j3frcd3"
+      "security":
+        -
+          "bearerAuth": []
+      "responses":
+        "200":
+          "description": "Successful response"
+          "content":
+            "application/json":
+              "schema":
+                "type": "object"
+                "properties":
+                  "result":
+                    "type": "object"
+                    "properties":
+                      "ofac_sanctioned":
+                        "type": "boolean"
+                        "example": true
+                      "risk_categories":
+                        "type": "array"
+                        "items":
+                          "type": "string"
+                          "enum":
+                            - "CSAM"
+                            - "Sanctioned: OFAC"
+                            - "Sanctioned: Other"
+                            - "Terrorist Financing"
+                            - "Human Trafficking"
+                            - "Severe Risk Analysis"
+                            - "Criminal Enterprise"
+                            - "Ransomware"
+                            - "Stolen Funds"
+                            - "Darknet Market"
+                            - "Scam: Other"
+                            - "Scam: Extortion"
+                            - "Scam: Investment"
+                            - "Scam: Romance"
+                            - "Scam: Giveaway"
+                            - "Mixer"
+                            - "Gambling Service"
+                            - "Exchange: Unlicensed"
+                            - "Adult Sexually Explicit Material"
+                            - "ATM"
+                            - "Exchange: P2P"
+                            - "Exchange"
+                            - "Physical Crypto Storage"
+                            - "Merchant Services"
+                            - "Business Address"
+                            - "Donation Wallet"
+                            - "Mining Pool"
+                            - "Government Entity"
+                            - "Burn Address"
+                            - "Smart Contract"
+                            - "Unknown"
+                        "example":
+                          - "OFAC"
+                          - "Gambling Service"
+                  "version":
+                    "type": "string"
+                    "example": "1.2"
+                  "warnings":
+                    "type": "array"
+                    "items":
+                      "type": "string"
+                    "example":
+                      - ""
+                  "errors":
+                    "type": "array"
+                    "items":
+                      "type": "string"
+                    "example":
+                      - ""
+                "required":
+                  - "result"
+                  - "version"
+                  - "warnings"
+                  - "errors"
+  "/risk_analysis/{address}":
+    "get":
+      "summary": "A.I. Risk Analysis Attribution"
+      "description": "Advanced A.I. risk analysis for crypto addresses incorporating on-chain, off-chain and behavioral data."
+      "parameters":
+        -
+          "name": "address"
+          "in": "path"
+          "required": true
+          "description": "The cryptocurrency address to analyze"
+          "schema":
+            "type": "string"
+          "example": "bc1qfcl8a4ck7uu3phgg5fj6g9servp6f85j3frcd3"
+      "security":
+        -
+          "bearerAuth": []
+      "responses":
+        "200":
+          "description": "Successful response"
+          "content":
+            "application/json":
+              "schema":
+                "type": "object"
+                "properties":
+                  "result":
+                    "type": "object"
+                    "properties":
+                      "ofac_sanctioned":
+                        "type": "boolean"
+                        "example": true
+                      "risk_categories":
+                        "type": "array"
+                        "items":
+                          "type": "string"
+                          "enum":
+                            - "CSAM"
+                            - "Sanctioned: OFAC"
+                            - "Sanctioned: Other"
+                            - "Terrorist Financing"
+                            - "Human Trafficking"
+                            - "Severe Risk Analysis"
+                            - "Criminal Enterprise"
+                            - "Ransomware"
+                            - "Stolen Funds"
+                            - "Darknet Market"
+                            - "Scam: Other"
+                            - "Scam: Extortion"
+                            - "Scam: Investment"
+                            - "Scam: Romance"
+                            - "Scam: Giveaway"
+                            - "Mixer"
+                            - "Gambling Service"
+                            - "Exchange: Unlicensed"
+                            - "Adult Sexually Explicit Material"
+                            - "ATM"
+                            - "Exchange: P2P"
+                            - "Exchange"
+                            - "Physical Crypto Storage"
+                            - "Merchant Services"
+                            - "Business Address"
+                            - "Donation Wallet"
+                            - "Mining Pool"
+                            - "Government Entity"
+                            - "Burn Address"
+                            - "Smart Contract"
+                            - "Unknown"
+                        "example":
+                          - "OFAC"
+                          - "Gambling Service"
+                      "behavioral_risk":
+                        "type": "object"
+                        "properties":
+                          "letter":
+                            "type": "string"
+                            "enum":
+                              - "A+"
+                              - "A"
+                              - "A-"
+                              - "B+"
+                              - "B"
+                              - "B-"
+                              - "C+"
+                              - "C"
+                              - "C-"
+                              - "D+"
+                              - "D"
+                              - "D-"
+                              - "F"
+                            "example": "B+"
+                          "ordinal":
+                            "type": "integer"
+                            "enum":
+                              - "0"
+                              - "1"
+                              - "2"
+                              - "3"
+                              - "4"
+                              - "5"
+                              - "6"
+                              - "7"
+                              - "8"
+                              - "9"
+                              - "10"
+                              - "11"
+                              - "12"
+                              - "13"
+                            "example": "3"
+                          "computed_on":
+                            "type": "object"
+                            "properties":
+                              "date_time":
+                                "type": "string"
+                                "format": "date-time"
+                                "example": "2023:03:30:19:19:01:UTC"
+                              "millis":
+                                "type": "integer"
+                                "format": "int64"
+                                "example": "1680202854689"
+                  "version":
+                    "type": "string"
+                    "example": "1.2"
+                  "warnings":
+                    "type": "array"
+                    "items":
+                      "type": "string"
+                    "example":
+                      - ""
+                  "errors":
+                    "type": "array"
+                    "items":
+                      "type": "string"
+                    "example":
+                      - ""
+                "required":
+                  - "result"
+                  - "version"
+                  - "warnings"
+                  - "errors"
