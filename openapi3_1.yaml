@@ -44,9 +44,7 @@
                     "properties":
                       "ofac_sanctioned":
                         "type": "boolean"
-                        "examples":
-                          - true
-                          - false
+                        "example": true
                   "version":
                     "type": "string"
                     "example": "1.2"
