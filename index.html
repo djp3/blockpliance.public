@@ -1,0 +1,264 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Blockpliance API and Developer Documentation</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+<!-- https://cdnjs.com/libraries/prism -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/toolbar/prism-toolbar.min.css" integrity="sha512-Dqf5696xtofgH089BgZJo2lSWTvev4GFo+gA2o4GullFY65rzQVQLQVlzLvYwTo0Bb2Gpb6IqwxYWtoMonfdhQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+	<style>
+        body { padding-top: 60px; }
+        pre[class*="language-"] {
+			border: solid black 1px;
+            border-radius: 0.5rem;
+            /*margin-top: 1rem;
+            margin-bottom: 1rem;*/
+        }
+		section{
+			padding-top:60px;
+		}
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+	<div class="container">
+		<a class="navbar-brand" href="#">Blockpliance API and Developer Documentation</a>
+	</div>
+</nav>
+<div class="container">
+	<div class="row">
+		<div class="col-md-12">
+			<header class="mb-4">
+				<img src="assets/img/blockpliance_logo.png" alt="Blockpliance Sticker Logo" class="img-fluid mb-3" />
+				<div class="float-end ms-3">
+					<img src="assets/img/cards.png" alt="Blockpliance Risk Cards A through F" width="200" class="img-fluid" />
+				</div>
+				<h1>API and Developer Documentation</h1>
+					tl;dr
+				<ul>
+					<li> <a href="#api-documentation">API documentation</a> </li>
+					<li> <a href="https://github.com/djp3/blockpliance.public#code-examples">Code examples</a> </li>
+					<li> <a href="https://github.com/djp3/blockpliance.public/blob/main/openapi3_1.yaml">OpenAPI specification file</a> </li>
+					<li> <a href="assets/img/BlockplianceAPISummary.pdf">one-page PDF Summary</a> </li>
+				</ul>
+					Contents
+				<ul>
+					<li> <a href="#introduction">Introduction</a> </li>
+					<li> <a href="#api-products">API Products</a> </li>
+					<li> <a href="#getting-started">Getting Started</a> </li>
+					<li> <a href="#authentication">Authentication</a> </li>
+					<li> <a href="#best-practices">Best Practices</a> </li>
+					<li> <a href="#support-feedback">Support and Feedback</a> </li>
+					<li> <a href="#api-documentation">API Documentation</a>
+				</ul>
+			</header>
+			<section id="introduction">
+				<h2>Introduction</h2>
+				<p> <a href="assets/img/BlockplianceAPISummary.pdf">PDF Summary</a> </p>
+				<p>Blockpliance is a leading blockchain compliance platform that offers a comprehensive suite of tools and services to ensure regulatory compliance for blockchain-based projects. Our API allows developers to seamlessly integrate Blockpliance's functionalities into their applications.</p>
+				<p>We are a fast moving start-up company, so if you don't see what you like, reach out to us <a href="mailto:djp3@blockpliance.com">(djp3@blockpliance.com)</a> to see if we can develop an endpoint that suits your needs.  </p>
+			<p>This guide will help you understand how to integrate and utilize our API to leverage Blockpliance's Artificial Intelligence and Machine Learning driven compliance features in your applications.</p>
+			</section>
+					<section id="api-products">
+						<h2>API Products</h2>
+						
+						<div style="background-color:rgb(240,245,255); padding:1rem; border:solid 1px rgb(150,150,150)">
+				<div class="float-end ms-3">
+    <img class="img-fluid w-50" src="assets/img/noun-road-obstruction-6958597.svg" alt="Road barrier icon created by Designing Hub from Noun Project">
+				</div>
+							<h4>
+								<strong>Foundational:</strong> OFAC Sanctions Screening
+							</h4>
+							<p>Instantly verify blockchain transactions against the latest U.S. Department of the Treasury's OFAC sanctions list.</p>
+							<ul>
+								<li>Key Features:
+										
+									<ul>
+										<li>Real-time screening of Bitcoin addresses
+												
+											<ul>
+												<li>(USDT on ETH coming Q3 2024)</li>
+											</ul>
+										</li>
+										<li>Continuous updates from official OFAC data sources</li>
+										<li>Low-latency responses for high-throughput systems</li>
+										<li>Detailed match information for compliance reporting</li>
+									</ul>
+								</li>
+								<li>Use Cases:
+										
+									<ul>
+										<li>Pre-transaction risk assessment</li>
+										<li>Automated compliance checks in DeFi protocols</li>
+										<li>Regulatory reporting and audit trails</li>
+									</ul>
+								</li>
+							</ul>
+							<h4>
+				<div class="float-end ms-3">
+    <img class="img-fluid w-50" src="assets/img/noun-lighthouse-6958570.svg" alt="Lighthouse icon created by Designing Hub from Noun Project">
+				</div>
+								<strong>Advanced:</strong> Address Risk Attribution
+							</h4>
+							<p>Comprehensive risk profiling for crypto addresses through blockchain analysis and multi-source intelligence.</p>
+							<ul>
+								<li>Key Features:
+										
+									<ul>
+										<li>Multi-factor risk assessment incorporating on-chain and off-chain data 
+												
+											<ul>
+												<li>(USDT on ETH coming Q3 2024)</li>
+											</ul>
+										</li>
+										<li>Continuous updates based on latest blockchain activity and intel</li>
+										<li>Low-latency responses for high-throughput systems</li>
+										<li>Detailed attribution data for comprehensive risk understanding</li>
+									</ul>
+								</li>
+								<li>Use Cases:
+										
+									<ul>
+										<li>Enhanced due diligence for high-value transactions</li>
+										<li>Risk-based transaction monitoring and alerting</li>
+										<li>Customer risk profiling for crypto exchanges and institutions</li>
+										<li>Informed decision-making for DeFi protocols</li>
+									</ul>
+								</li>
+							</ul>
+							<h4>
+				<div class="float-end ms-3">
+    <img class="img-fluid w-50" src="assets/img/noun-scanning-location-6958586.svg" alt="Radar scanning icon created by Designing Hub from Noun Project">
+				</div>
+								<strong>Comprehensive:</strong> A.I. Risk Analysis
+							</h4>
+							<p>Advanced risk analysis for crypto addresses powered by artificial intelligence, incorporating on-chain, off-chain, and behavioral data.</p>
+							<ul>
+								<li>Key Features:
+										
+									<ul>
+										<li>AI-driven risk scoring for Bitcoin addresses
+												
+											<ul>
+												<li>(USDT on ETH coming Q3 2024)</li>
+											</ul>
+										</li>
+										<li>Comprehensive risk assessment combining blockchain data, external intelligence, and behavioral patterns</li>
+										<li>Adaptive learning model for evolving threat detection</li>
+										<li>Real-time updates reflecting the latest blockchain activities and emerging risks</li>
+									</ul>
+								</li>
+								<li>Use Cases:
+										
+									<ul>
+										<li>Predictive risk management for crypto exchanges and financial institutions</li>
+										<li>Enhanced AML and fraud prevention systems</li>
+										<li>Risk-based customer due diligence automation</li>
+									</ul>
+								</li>
+							</ul>
+						</div>
+					</section>
+					<section id="getting-started">
+						<h2>Getting Started</h2>
+						<ol>
+							<li>Sign up for a Blockpliance account with our friendly team 
+								<a href="https://calendly.com/blockpliance/personalized-intro">here</a>.
+							</li>
+							<li>Software Flow
+                            
+								<ol>
+									<li>Start by requesting a token from AWS Cognito using username and password that you received from Blockpliance.</li>
+									<li>Query for info on a crypto-address with an http REST API call</li>
+									<li>Process the JSON response for the information you need</li>
+									<li>Repeat previous two steps as necessary</li>
+									<li>If your software is a long running process periodically refresh your AWS credentials</li>
+								</ol>
+							</li>
+						</ol>
+					</section>
+					<section id="authentication">
+						<h2>Authentication</h2>
+						<p>All API requests require authentication using AWS Cognito.</p>
+						<pre>
+							<code class="language-bash">
+# File containing the initial authentication payload.
+AUTH_PAYLOAD="user-data.json"
+
+# Cognito endpoint
+COGNITO_ENDPOINT="https://cognito-idp.us-east-1.amazonaws.com/"
+
+# Authenticate and acquire tokens
+if ! AUTH_RESULT=$(curl -s -X POST --data @"$AUTH_PAYLOAD" -H 'X-Amz-Target: AWSCognitoIdentityProviderService.InitiateAuth' -H 'Content-Type: application/x-amz-json-1.1' $COGNITO_ENDPOINT);  then
+    echo "Error: Authentication request failed"
+    exit 1
+fi
+
+# Extract access and refresh tokens
+ACCESS_TOKEN=$(echo "$AUTH_RESULT" | jq -r .AuthenticationResult.AccessToken)
+REFRESH_TOKEN=$(echo "$AUTH_RESULT" | jq -r .AuthenticationResult.RefreshToken)
+</code>
+						</pre>
+						<p>	user-data.json:
+										<pre><code class="language-json">
+{
+  "AuthParameters": {
+    "USERNAME": "djp3@blockpliance.com",
+    "PASSWORD": "********"
+  },
+  "AuthFlow": "USER_PASSWORD_AUTH",
+  "ClientId": "********"
+}
+</code>
+										</pre>
+						</p>
+					</section>
+					<section id="code-examples">
+						<h3>Bash</h3>
+						<p>
+							<a href="./bash">bash example</a>
+						</p>
+						<h3>Python</h3>
+						<p>
+							<a href="./python">python example</a>
+						</p>
+					</section>
+					<section id="best-practices">
+						<h2>Best Practices</h2>
+						<ul>
+							<li>We enforce HTTPS for all API requests to ensure secure communication.</li>
+							<li>All information is passed in the URL as an https GET method. The Blockpliance API returns data in JSON format.</li>
+							<li>Consider how to gracefully handle errors, including timeout errors for network problems.</li>
+							<li>In case of any errors, the API will return an appropriate HTTP status code and/or an error message in the response body.</li>
+							<li>Keep your AWS credentials secure to avoid unauthorized parties charging your account.</li>
+						</ul>
+					</section>
+					<section id="support-feedback">
+						<h2>Support and Feedback</h2>
+						<p>If you have any questions, issues, or feedback regarding the Blockpliance API, please contact our support team at 
+							<a href="mailto:djp3@blockpliance.com">djp3@blockpliance.com</a>. We are here to assist you and ensure a smooth integration experience.
+						</p>
+						<p>Feel free to issue a pull request against this document to recommend any changes</p>
+					</section>
+					<section id="api-documentation">
+						<hr class="border border-primary border-5 opacity-100">
+						<h2>API Documentation</h2>
+					</section>
+				</div>
+			</div>
+		</div>
+		<iframe src="swagger-ui.html" width="100%" height="800" frameborder="0" style="border: 1px solid #ddd;"></iframe>
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js" integrity="sha512-SkmBfuA2hqjzEVpmnMt/LINrjop3GKWqsuLSSB3e7iBmYK7JuWw4ldmmxwD9mdm2IRTTi0OxSAfEGvgEi0i2Kw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/toolbar/prism-toolbar.min.js" integrity="sha512-st608h+ZqzliahyzEpETxzU0f7z7a9acN6AFvYmHvpFhmcFuKT8a22TT5TpKpjDa3pt3Wv7Z3SdQBCBdDPhyWA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/copy-to-clipboard/prism-copy-to-clipboard.min.js" integrity="sha512-/kVH1uXuObC0iYgxxCKY41JdWOkKOxorFVmip+YVifKsJ4Au/87EisD1wty7vxN2kAhnWh6Yc8o/dSAXj6Oz7A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/show-language/prism-show-language.min.js" integrity="sha512-d1t+YumgzdIHUL78me4B9NzNTu9Lcj6RdGVbdiFDlxRV9JTN9s+iBQRhUqLRq5xtWUp1AD+cW2sN2OlST716fw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/normalize-whitespace/prism-normalize-whitespace.min.js" integrity="sha512-Kit4oPSAREacS6LEF4LGcL6MMlG3O1GqRFDGSX1Vg4JrozGU7hHoMKFkiMWevWq/xmNq8pzMhO2PcZCPHe/gmQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	</body>
+</html>
+
+
