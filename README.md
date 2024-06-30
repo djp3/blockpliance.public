@@ -2,3 +2,14 @@
 
 Visit our documentation page
 <a href="https://djp3.github.io/blockpliance.public/">https://djp3.github.io/blockpliance.public/</a>
+
+					<section id="code-examples">
+						<h3>API Examples to go with the documentation above</h3>
+						<p>
+							<a href="./bash">bash example</a>
+						</p>
+						<h3>Python</h3>
+						<p>
+							<a href="./python">python example</a>
+						</p>
+					</section>
