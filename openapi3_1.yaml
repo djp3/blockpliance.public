@@ -66,16 +66,16 @@
                   - "version"
                   - "warnings"
                   - "errors"
-  "/risk_profile/{address}":
+  "/risk_attributes/{address}":
     "get":
-      "summary": "Risk Attribution"
-      "description": "Risk profiling for cryptocurrency addresses"
+      "summary": "Risk Attributions"
+      "description": "Risk data attributions for cryptocurrency addresses"
       "parameters":
         -
           "name": "address"
           "in": "path"
           "required": true
-          "description": "The cryptocurrency address to profile"
+          "description": "The cryptocurrency address"
           "schema":
             "type": "string"
           "example": "bc1qfcl8a4ck7uu3phgg5fj6g9servp6f85j3frcd3"
