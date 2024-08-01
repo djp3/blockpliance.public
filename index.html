@@ -40,8 +40,8 @@
 					tl;dr
 				<ul>
 					<li> <a href="#api-documentation">API documentation</a> </li>
-					<li> <a href="https://github.com/djp3/blockpliance.public">github repo with code examples</a> </li>
-					<li> <a href="https://github.com/djp3/blockpliance.public/blob/main/openapi3_1.yaml">OpenAPI specification file</a> </li>
+					<li> <a href="https://github.com/djp3/blockpliance.public">github repo with code examples</a> in bash and python</li>
+					<li> <a href="https://github.com/djp3/blockpliance.public/blob/main/openapi_v3.0.1.yaml">OpenAPI specification file</a> </li>
 					<li> <a href="assets/img/BlockplianceAPISummary.pdf">one-page PDF Summary</a> </li>
 				</ul>
 					Contents
@@ -73,17 +73,14 @@
 							<h4>
 								<strong>Foundational:</strong> OFAC Sanctions Screening
 							</h4>
-							<p>Instantly verify blockchain transactions against the latest U.S. Department of the Treasury's OFAC sanctions list.</p>
+							<p>Instantly verify blockchain transactions against
+							the latest U.S. Department of the Treasury's OFAC
+							sanctions list and extended attributions.</p>
 							<ul>
 								<li>Key Features:
 										
 									<ul>
-										<li>Real-time screening of Bitcoin addresses
-												
-											<ul>
-												<li>(USDT on ETH coming Q3 2024)</li>
-											</ul>
-										</li>
+										<li>Real-time screening of all types of sanctioned crypto addresses </li>
 										<li>Continuous updates from official OFAC data sources</li>
 										<li>Low-latency responses for high-throughput systems</li>
 										<li>Detailed match information for compliance reporting</li>
@@ -109,12 +106,7 @@
 								<li>Key Features:
 										
 									<ul>
-										<li>Multi-factor risk assessment incorporating on-chain and off-chain data 
-												
-											<ul>
-												<li>(USDT on ETH coming Q3 2024)</li>
-											</ul>
-										</li>
+										<li>Multi-factor risk assessment incorporating on-chain and off-chain data</li>
 										<li>Continuous updates based on latest blockchain activity and intel</li>
 										<li>Low-latency responses for high-throughput systems</li>
 										<li>Detailed attribution data for comprehensive risk understanding</li>
@@ -183,7 +175,8 @@
 					</section>
 					<section id="authentication">
 						<h2>Authentication</h2>
-						<p>All API requests require authentication using AWS Cognito.</p>
+						<p>All API requests require authentication using AWS
+						Cognito. The following is a bash scripting example:</p>
 						<pre>
 							<code class="language-bash">
 # File containing the initial authentication payload.
@@ -237,6 +230,9 @@ REFRESH_TOKEN=$(echo "$AUTH_RESULT" | jq -r .AuthenticationResult.RefreshToken)
 							<a href="mailto:djp3@blockpliance.com">djp3@blockpliance.com</a>. We are here to assist you and ensure a smooth integration experience.
 						</p>
 						<p>Feel free to issue a pull request against this document to recommend any changes</p>
+						<p>Below is a live API test that is available if you
+						have an authorization token from AWS Cognito. (which
+						requires talking to Blockpliance first)</p>
 					</section>
 					<section id="api-documentation">
 						<hr class="border border-primary border-5 opacity-100">
