@@ -1,8 +1,8 @@
 {
-  "ClientId": "<put client id here>",
+  "ClientId": "<put client id here (provided by Blockpliance)>",
   "AuthFlow": "USER_PASSWORD_AUTH",
   "AuthParameters": {
-    "USERNAME": "<put email address here",
-    "PASSWORD": "<put password here>"
+    "USERNAME": "<put client email address here",
+    "PASSWORD": "<put client password here>"
   }
 }

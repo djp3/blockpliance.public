@@ -36,30 +36,29 @@ if ! AUTH_RESULT=$(curl -s -X POST --data @"$AUTH_PAYLOAD" -H 'X-Amz-Target: AWS
 	exit 1
 fi
 
-#Save result for inspection
+#Save result for inspection (optional)
 echo "$AUTH_RESULT" | jq -r > result.json
 
 # Extract access and refresh tokens
 ACCESS_TOKEN=$(echo "$AUTH_RESULT" | jq -r .AuthenticationResult.AccessToken)
 REFRESH_TOKEN=$(echo "$AUTH_RESULT" | jq -r .AuthenticationResult.RefreshToken)
 
-#identify btc addresses you are interested in querying for the grade endpoint
-declare -a hashs=( 1FfmbHfnpaZjKFvyi1okTjJJusN455paPH/BTC 12cbQLTFMXRnSzktFkuoG3eHoMeFtpTu3S/BTC )
-
-#identify any crypto addresses you are interested in querying for the beta endpoint
-#declare -a hashs=( 12cbQLTFMXRnSzktFkuoG3eHoMeFtpTu3S/BTC 0x001cf27131e91371038e808e00f951197356c663/ETH 0x002026372b31817899d414a0f226b8b500136f5f/ETH 0x00271ba71c16cb0fdf532570091341665d147350/ETH )
+#identify crypto addresses you are interested in querying for the API endpoints
+declare -a hashs=( 1FfmbHfnpaZjKFvyi1okTjJJusN455paPH 12cbQLTFMXRnSzktFkuoG3eHoMeFtpTu3S )
 
 #query each in turn and store in output file for inspection
 for i in "${hashs[@]}"; do
-    filename=$(echo "$i" | tr '/' '_')
 	echo -n "$i,";
-    curl -s -X GET -H "Authorization: Bearer $ACCESS_TOKEN" "https://api.blockpliance.com/v1/grade/$i" | tee "${filename}.output" | jq .;
-    #curl -s -X GET -H "Authorization: Bearer $ACCESS_TOKEN" "https://api.blockpliance.com/v1/beta/$i" | tee "${filename}.output" | jq .;
+    filename=$i
+	#Three different possible endpoints
+    curl -s -X GET -H "Authorization: Bearer $ACCESS_TOKEN" "https://api.blockpliance.com/v1/ofac_check/$i" | jq . | tee "${filename}.ofac_check.output" ;
+    curl -s -X GET -H "Authorization: Bearer $ACCESS_TOKEN" "https://api.blockpliance.com/v1/risk_attributes/$i" | jq . | tee "${filename}.risk_attributes.output" ;
+    curl -s -X GET -H "Authorization: Bearer $ACCESS_TOKEN" "https://api.blockpliance.com/v1/risk_analysis/$i" | jq . | tee "${filename}.risk_analysis.output" ;
 done
 
 # Prepare the refresh token payload by replacing the placeholder in the template
 cp $REFRESH_PAYLOAD_TEMPLATE $REFRESH_PAYLOAD
-sed -i '' "s/foo/$REFRESH_TOKEN/g" $REFRESH_PAYLOAD
+sed -i '' "s/.provided by AWS authorization API call./$REFRESH_TOKEN/g" $REFRESH_PAYLOAD
 
 # Attempt to refresh the tokens
 REFRESH_RESULT=$(curl -s -X POST --data @$REFRESH_PAYLOAD -H 'X-Amz-Target: AWSCognitoIdentityProviderService.InitiateAuth' -H 'Content-Type: application/x-amz-json-1.1' $COGNITO_ENDPOINT)

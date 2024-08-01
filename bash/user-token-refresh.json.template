@@ -1,8 +1,8 @@
 {
-	"ClientId": "<put client id here>",
+    "ClientId": "<put client id here (provided by Blockpliance)>",
 	"AuthFlow": "REFRESH_TOKEN_AUTH",
 	"AuthParameters": {
-		"REFRESH_TOKEN": "foo"
+		"REFRESH_TOKEN": "<provided by AWS authorization API call>"
 	}
 }
 
