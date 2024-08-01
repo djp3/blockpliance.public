@@ -29,8 +29,9 @@ class Settings:
  
     BASE_URL = "https://api.blockpliance.com/v1/"
     ENDPOINT_MAPPING = {
-        "grade": "grade",
-        "beta": "beta"
+        "ofac_check": "ofac_check",
+        "risk_attributes": "risk_attributes",
+        "risk_analysis": "risk_analysis"
     }
 
 
@@ -139,14 +140,12 @@ def refresh_cognito_tokens(aws_region, client_id, refresh_token):
 
 
 # Standard call to the bitcoin risk assessment endpoint: 
-#        json_response = query_risk_assessment_api(1FfmbHfnpaZjKFvyi1okTjJJusN455paPH)
+#        json_response = query_api("1FfmbHfnpaZjKFvyi1okTjJJusN455paPH")
 #           or
-#        json_response = query_risk_assessment_api(1FfmbHfnpaZjKFvyi1okTjJJusN455paPH,"BTC","grade)
+#        json_response = query_api("1FfmbHfnpaZjKFvyi1okTjJJusN455paPH","ofac_check")
 #
-# Beta call to the multi-currency risk assessment endpoint: 
-#        json_response = query_risk_assessment_api(1FfmbHfnpaZjKFvyi1okTjJJusN455paPH,"BTC","beta")
 
-def query_risk_assessment_api(crypto_address: str, currency_type: str = "BTC", end_point: str = "grade") -> Dict:
+def query_api(crypto_address: str, end_point: str = "ofac_check") -> Dict:
     # Check if the access token exists
     access_token = settings.AWS_TOKENS.get("access_token")
     if not access_token:
@@ -158,7 +157,7 @@ def query_risk_assessment_api(crypto_address: str, currency_type: str = "BTC", e
         return {"error": "Invalid endpoint"}
 
     # Construct the URL
-    url = f"{settings.BASE_URL}{endpoint_path}/{crypto_address}{currency_type}"
+    url = f"{settings.BASE_URL}{endpoint_path}/{crypto_address}"
 
     # Set up the headers
     headers = {"Authorization": f"Bearer {access_token}"}
@@ -197,7 +196,11 @@ def main():
     # Example of querying AWS with two different crypto addresses
     crypto_addresses = ["1FfmbHfnpaZjKFvyi1okTjJJusN455paPH", "12cbQLTFMXRnSzktFkuoG3eHoMeFtpTu3S"]
     for address in crypto_addresses:
-        json_response = query_risk_assessment_api(address)
+        json_response = query_api(address)
+        # or
+        #  json_response = query_api(address,"ofac_check")
+        #  json_response = query_api(address,"risk_attributes")
+        #  json_response = query_api(address,"risk_analysis")
         if 'error' in json_response:
             logging.error("Failed to retrieve data for %s:\n%s", address, json.dumps(json_response['error']))
         else:
@@ -222,7 +225,6 @@ if __name__ == "__main__":
 
     # Set up settings
     settings = Settings();
-    logging.info("No settings yet:\n%s",settings);
 
     # Launch
     main()
