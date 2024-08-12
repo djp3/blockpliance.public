@@ -272,13 +272,15 @@ REFRESH_TOKEN=$(echo "$AUTH_RESULT" | jq -r .AuthenticationResult.RefreshToken)
 								<ul>
 									<table class="performance-table">
 									<thead>
-										<td>Location</td>
-										<td>DNS lookup (ms)</td>
-										<td>SSL handshake (ms)</td>
-										<td>TCP connection (ms)</td>
-										<td>Time to first byte (ms)</td>
-										<td>Total time (ms)</td>
+										<th>Location</th>
+										<th>DNS lookup (ms)</th>
+										<th>SSL handshake (ms)</th>
+										<th>TCP connection (ms)</th>
+										<th>Time to first byte (ms)</th>
+										<th>Total time (ms)</th>
 									</thead>
+										<tbody>
+
 										<tr>
 											<td>At the Data Center (n=8)</td>
 											<td>&mu;=1.0 (&sigma;=0.04)</td>
@@ -295,13 +297,12 @@ REFRESH_TOKEN=$(echo "$AUTH_RESULT" | jq -r .AuthenticationResult.RefreshToken)
 											<td>&mu;=147.7 (&sigma;=23.44)</td>
 											<td>&mu;=147.9 (&sigma;=23.44)</td>
 										</tr>
+											</tbody>
 									</table>
 								</ul>	
 							</li>
 							
 						</ul>
-						<table><thead><td>method</td><td>Latency at the data center</td><td>Latency over Starlink (LA)</td><td>Latency from Central America</td></thead>
-						<tr><td>ofac_check</td><td></td></tr></table>
 					</section>
 				</div>
 			</div>
