@@ -301,6 +301,72 @@ REFRESH_TOKEN=$(echo "$AUTH_RESULT" | jq -r .AuthenticationResult.RefreshToken)
 									</table>
 								</ul>	
 							</li>
+							<li> risk_attributes
+								<ul>
+									<table class="performance-table">
+									<thead>
+										<th>Location</th>
+										<th>DNS lookup (ms)</th>
+										<th>SSL handshake (ms)</th>
+										<th>TCP connection (ms)</th>
+										<th>Time to first byte (ms)</th>
+										<th>Total time (ms)</th>
+									</thead>
+										<tbody>
+
+										<tr>
+											<td>At the Data Center (n=8)</td>
+											<td>&mu;=1.0 (&sigma;=0.10)</td>
+											<td>&mu;=62.2 (&sigma;=2.18)</td>
+											<td>&mu;=2.08 (&sigma;=0.15)</td>
+											<td>&mu;=67.7 (&sigma;=2.49)</td>
+											<td>&mu;=67.8 (&sigma;=2.49)</td>
+										</tr>
+										<tr>
+											<td>LEO Satellite (LA Ground Station) (n=8)</td>
+											<td>&mu;=2.7 (&sigma;=0.56)</td>
+											<td>&mu;=81.3 (&sigma;=6.37)</td>
+											<td>&mu;=32.5 (&sigma;=3.73)</td>
+											<td>&mu;=151.8 (&sigma;=7.29)</td>
+											<td>&mu;=152.0 (&sigma;=7.30)</td>
+										</tr>
+											</tbody>
+									</table>
+								</ul>	
+							</li>
+							<li> risk_analysis
+								<ul>
+									<table class="performance-table">
+									<thead>
+										<th>Location</th>
+										<th>DNS lookup (ms)</th>
+										<th>SSL handshake (ms)</th>
+										<th>TCP connection (ms)</th>
+										<th>Time to first byte (ms)</th>
+										<th>Total time (ms)</th>
+									</thead>
+										<tbody>
+
+										<tr>
+											<td>At the Data Center (n=8)</td>
+											<td>&mu;=1.0 (&sigma;=0.02)</td>
+											<td>&mu;=60.0 (&sigma;=1.23)</td>
+											<td>&mu;=2.0 (&sigma;=0.05)</td>
+											<td>&mu;=65.0 (&sigma;=1.75)</td>
+											<td>&mu;=65.1 (&sigma;=1.74)</td>
+										</tr>
+										<tr>
+											<td>LEO Satellite (LA Ground Station) (n=8)</td>
+											<td>&mu;=2.4 (&sigma;=0.23)</td>
+											<td>&mu;=83.7 (&sigma;=7.53)</td>
+											<td>&mu;=33.9 (&sigma;=4.21)</td>
+											<td>&mu;=158.1 (&sigma;=10.58)</td>
+											<td>&mu;=158.3 (&sigma;=10.54)</td>
+										</tr>
+											</tbody>
+									</table>
+								</ul>	
+							</li>
 							
 						</ul>
 					</section>
