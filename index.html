@@ -20,6 +20,35 @@
 		section{
 			padding-top:60px;
 		}
+	.performance-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: Arial, sans-serif;
+}
+
+.performance-table th, .performance-table td {
+    padding: 8px 15px;
+    text-align: left;
+    border-bottom: 1px solid #ccc;
+}
+
+.performance-table th {
+    background-color: #007BFF; /* Blue header */
+    color: white;
+}
+
+.performance-table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.performance-table tr:hover {
+    background-color: #ddf;
+}
+
+.performance-table td {
+    font-size: 0.95em;
+}
+
     </style>
 </head>
 <body>
@@ -241,7 +270,7 @@ REFRESH_TOKEN=$(echo "$AUTH_RESULT" | jq -r .AuthenticationResult.RefreshToken)
 						<ul>
 							<li> ofac_check
 								<ul>
-									<table>
+									<table class="performance-table">
 									<thead>
 										<td>Location</td>
 										<td>DNS lookup (ms)</td>
