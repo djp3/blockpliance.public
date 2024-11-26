@@ -16,6 +16,7 @@
 import requests
 import json
 import logging
+import argparse
 from os import environ
 from typing import Dict
 
@@ -23,8 +24,8 @@ from typing import Dict
 class Settings:
     AWS_REGION = None
     AWS_APP_CLIENT_ID = None
-    AWS_USERNAME = None
-    AWS_PASSWORD = None
+    BLOCKPLIANCE_USERNAME = None
+    BLOCKPLIANCE_PASSWORD = None
     AWS_TOKENS = {}
  
     BASE_URL = "https://api.blockpliance.com/v1/"
@@ -38,8 +39,8 @@ class Settings:
     def __str__(self):
         return (f"Settings(\n\tAWS_REGION={self.AWS_REGION}, "
                 f"\n\tAWS_APP_CLIENT_ID={self.AWS_APP_CLIENT_ID}, "
-                f"\n\tAWS_USERNAME={self.AWS_USERNAME}, "
-                f"\n\tAWS_PASSWORD={'******' if self.AWS_PASSWORD else None}, "
+                f"\n\tBLOCKPLIANCE_USERNAME={self.BLOCKPLIANCE_USERNAME}, "
+                f"\n\tBLOCKPLIANCE_PASSWORD={'******' if self.BLOCKPLIANCE_PASSWORD else None}, "
                 f"\n\tAWS_TOKENS={'Present' if self.AWS_TOKENS else 'Empty'})")
 
 
@@ -179,13 +180,30 @@ def query_api(crypto_address: str, end_point: str = "ofac_check") -> Dict:
  
 def main():
     # Get secrets from environment variables
-    settings.AWS_REGION = environ.get('AWS_REGION')
-    settings.AWS_APP_CLIENT_ID = environ.get('AWS_APP_CLIENT_ID')
-    settings.AWS_USERNAME = environ.get('AWS_USERNAME')
-    settings.AWS_PASSWORD = environ.get('AWS_PASSWORD')
+    settings.AWS_REGION = environ.get('AWS_REGION', 'us-east-1')  # Default to 'us-east-1' if not set
+    settings.AWS_APP_CLIENT_ID = environ.get('AWS_APP_CLIENT_ID','4e9dium43p2dgdhfdop2lq6ong') # Default to current API standard
+    settings.BLOCKPLIANCE_USERNAME = environ.get('BLOCKPLIANCE_USERNAME')
+    settings.BLOCKPLIANCE_PASSWORD = environ.get('BLOCKPLIANCE_PASSWORD')
+
+    # Parse command-line arguments
+    parser = argparse.ArgumentParser(description="Query API for crypto addresses.")
+    parser.add_argument(
+        "method",
+        choices=["ofac_check", "risk_attributes", "risk_analysis"],
+        help="The method to call on the API (e.g., ofac_check, risk_attributes, risk_analysis)."
+    )
+    parser.add_argument(
+        "crypto_addresses",
+        nargs="+",
+        help="List of crypto addresses to query."
+    )
+    args = parser.parse_args()
+
+    # Log the chosen method
+    logging.info("Using API method: %s", args.method)
 
     # Get tokens from AWS Cognito
-    tokens = get_cognito_tokens(settings.AWS_REGION, settings.AWS_APP_CLIENT_ID, settings.AWS_USERNAME, settings.AWS_PASSWORD)
+    tokens = get_cognito_tokens(settings.AWS_REGION, settings.AWS_APP_CLIENT_ID, settings.BLOCKPLIANCE_USERNAME, settings.BLOCKPLIANCE_PASSWORD)
     if 'error' in tokens:
         logging.error("Authentication failed: %s", tokens['error'])
         return  # Exit if authentication fails
@@ -193,19 +211,16 @@ def main():
     settings.AWS_TOKENS = tokens
     logging.info("Successfully authenticated with Cognito.\n%s",settings)
 
-    # Example of querying AWS with two different crypto addresses
-    crypto_addresses = ["1FfmbHfnpaZjKFvyi1okTjJJusN455paPH", "12cbQLTFMXRnSzktFkuoG3eHoMeFtpTu3S"]
-    for address in crypto_addresses:
-        json_response = query_api(address)
-        # or
-        #  json_response = query_api(address,"ofac_check")
-        #  json_response = query_api(address,"risk_attributes")
-        #  json_response = query_api(address,"risk_analysis")
+    # Query the API for each crypto address using the specified method
+    for address in args.crypto_addresses:
+        json_response = query_api(address, args.method)
+
+        # Output the JSON response to the console
         if 'error' in json_response:
             logging.error("Failed to retrieve data for %s:\n%s", address, json.dumps(json_response['error']))
         else:
-            logging.info("Data retrieved for %s:\n%s", address, json.dumps(json_response, indent=4))
-
+            logging.info("Data retrieved for %s:\n%s", address,json.dumps(json_response, indent=4))
+        
     # Refresh tokens to demonstrate how to do it
     tokens = refresh_cognito_tokens(settings.AWS_REGION,
                                     settings.AWS_APP_CLIENT_ID,
